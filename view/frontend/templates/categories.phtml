@@ -1,0 +1,43 @@
+<?php
+/**
+ * Category Thumbnail template
+ *
+ * @var $block \FalconMedia\CategoryThumbnail\Block\Categories
+ */
+?>
+<?php
+$_helper    = $this->helper('Magento\Catalog\Helper\Output');
+$_category  = $block->getCurrentCategory();
+$subcats    = $_category->getChildrenCategories();
+
+?>
+
+<?php if($_category->hasChildren()): ?>
+    <div class="block block-static-block categorythumbnail" id="categorythumbnail">
+        <div class="row">
+            <?php foreach($_category->getChildrenCategories() as $_child):
+                if($_child->getIsActive()): ?>
+                    <div class="col-sm-2dot4">
+                        <?php if($_child->getImageUrl()): ?> <!-- We can now use getImageUrl() on child categories -->
+                            <a href="<?php echo $_child->getUrl() ?>" class="category_name category-image-container" tabindex="-1">
+                                <span class="category-image-container">
+                                    <span class="category-image-wrapper">
+                                        <img class="category-image-photo" src="<?php echo $_child->getImageUrl(); ?>" alt="<?php /* @escapeNotVerified */ echo $this->helper('Magento\Catalog\Helper\Output')->categoryAttribute($_child, $_child->getName(), 'name') ?>" />
+                                    </span>
+                                </span>
+                                <h3 class="subcategory name image">
+                                    <span><?php echo $this->helper('Magento\Catalog\Helper\Output')->categoryAttribute($_child, $_child->getName(), 'name'); ?>
+                                    </span>
+                                </h3>
+                            </a>
+                        <?php else: ?>
+                            <a class="category-item-link" href="<?php echo $_child->getUrl() ?>">
+                                <h3 class="subcategory name no-image"><?php /* @escapeNotVerified */ echo $this->helper('Magento\Catalog\Helper\Output')->categoryAttribute($_child, $_child->getName(), 'name') ?></h3>
+                            </a>
+                        <?php endif; ?>
+                    </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+    </div>
+<?php endif; ?>
