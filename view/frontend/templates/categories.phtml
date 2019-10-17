@@ -9,15 +9,16 @@
 $_helper    = $this->helper('Magento\Catalog\Helper\Output');
 $_category  = $block->getCurrentCategory();
 $subcats    = $_category->getChildrenCategories();
+$_collectionSize = $subcats->count();
 
 ?>
 
 <?php if($_category->hasChildren()): ?>
     <div class="block block-static-block categorythumbnail" id="categorythumbnail">
-        <div class="row">
+        <div class="row items-<?php echo $_collectionSize ?>">
             <?php foreach($_category->getChildrenCategories() as $_child):
                 if($_child->getIsActive()): ?>
-                    <div class="col-sm-2dot4">
+                    <div class="col-md-<?php echo $_collectionSize; ?>">
                         <?php if($_child->getImageUrl()): ?> <!-- We can now use getImageUrl() on child categories -->
                             <a href="<?php echo $_child->getUrl() ?>" class="category_name category-image-container" tabindex="-1">
                                 <span class="category-image-container">
