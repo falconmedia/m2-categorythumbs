@@ -2,19 +2,7 @@
     $categories = $this->getCategoryCollection();
     $categoryHelper = $this->getCategoryHelper();
     $_collectionSize = $categories->count();
-    if($_collectionSize == 13)    { $_columnCount   = 5; $row = "row row-12"; $col = "col-md-15 col-xs-3"; }
-    if($_collectionSize == 12)    { $_columnCount   = 6; $row = "row row-12"; $col = "col-md-2";  }
-    if($_collectionSize == 11)    { $_columnCount   = 5; $row = "row row-12"; $col = "col-md-15 col-xs-3";  }
-    if($_collectionSize == 10)    { $_columnCount   = 5; $row = "row row-12"; $col = "col-md-15 col-xs-3";  }
-    if($_collectionSize >= 9)     { $_columnCount   = 5; $row = "row row-12"; $col = "col-md-15 col-xs-3";  }
-    if($_collectionSize == 8)     { $_columnCount   = 4; $row = "row row-12"; $col = "col-md-3";  }
-    if($_collectionSize == 7)     { $_columnCount   = 7; $row = "row row-12"; $col = "col-md-14  col-xs-2";  }
-    if($_collectionSize == 6)     { $_columnCount   = 6; $row = "row row-12"; $col = "col-md-2";  }
-    if($_collectionSize == 5)     { $_columnCount   = 5; $row = "row row-12"; $col = "col-md-15 col-xs-3";  }
-    if($_collectionSize == 4)     { $_columnCount   = 4; $row = "row row-12"; $col = "col-md-3";  }
-    if($_collectionSize == 3)     { $_columnCount   = 3; $row = "row row-8"; $col = "col-md-4";  }
-    if($_collectionSize == 2)     { $_columnCount   = 2; $row = "row row-4"; $col = "col-md-6";  }
-    if($_collectionSize == 1)     { $_columnCount   = 1; $row = "row row-3"; $col = "col-md-12";  }
+
 ?>
 <div class="widget block block-static-block categorythumbnail" id="categorythumbnail">
     <div class="block-content">
@@ -22,13 +10,13 @@
             <h2 class="title"><?php echo $this->getMainTitle(); ?></h2>
             <p class="info"><?php echo $this->getTagLine(); ?></p>
         </div>
-        <div class="<?php echo $row; ?> total<?php echo $_collectionSize; ?>">
+        <div class="row items-<?php echo $_collectionSize ?>">
         <?php
         $i = 0;
         foreach($categories as $category): $i++;
             $cat = $this->getCategorymodel($category->getId());
             $image = $cat->getImageUrl(); ?>
-            <div class="<?php echo $col; ?> item">
+            <div class=col-md-<?php echo $_collectionSize; ?> item-<?php echo $i; ?>">
             <?php if($image != null): ?>
                 <a class="category_name category-image-container" href="<?php echo $cat->getUrl(); ?>">
                     <span class="category-image-container">

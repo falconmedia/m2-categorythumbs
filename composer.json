@@ -3,7 +3,7 @@
   "description" : "Magento 2 module to Create a widget for Homepage to show categories and add subcategories to category page",
   "type" : "magento2-module",
   "prefer-stable": true,
-  "version" : "1.0.0",
+  "version" : "1.0.2",
   "license": [
     "OSL-3.0"
   ],
